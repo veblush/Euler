@@ -8,11 +8,16 @@ def check(v):
   if x*x != k:
     return 0
   return x
- 
+
 s = 0
-for x in xrange(1, 1000000000+1):
+M = 1000000000
+for x in xrange(2, M/3):
   a = 3*x*x + 2*x - 1
-  b = 3*x*x - 2*x - 1
-  if check(a) or check(b):
-    s += x
+  b = check(a)
+  if b != 0 and ((x-1)*b) % 2 == 0:
+    s += 3*x-1
+  a = 3*x*x - 2*x - 1
+  b = check(a)
+  if b != 0 and ((x+1)*b) % 2 == 0:
+    s += 3*x+1
 print s
